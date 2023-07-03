@@ -53,7 +53,7 @@ And log in again.
 ### 2. Build container
 
 1. Download the zip file from Github using the following link:
-   [https://github.com/matijsbrs/wg-easy-telegraf/archive/refs/tags/v1.0.0.zip](https://github.com/matijsbrs/wg-easy-telegraf/archive/refs/tags/v1.0.0.zip)
+   [https://github.com/matijsbrs/wg-easy-telegraf/archive/refs/tags/v1.1.0.zip](https://github.com/matijsbrs/wg-easy-telegraf/archive/refs/tags/v1.1.0.zip)
 
 2. Once the file is downloaded, unzip it to extract its contents. You can use a file extraction tool like WinRAR, 7-Zip, or the built-in zip utility on your operating system.
 
