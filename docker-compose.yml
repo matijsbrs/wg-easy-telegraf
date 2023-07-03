@@ -6,6 +6,14 @@ services:
       # Change this to your host's public address
       - WG_HOST=raspberrypi.local
 
+      # Required for telegraf if Activated.
+      - TELEGRAF_ENABLED=true
+      - INFLUXDB_V2_HOSTNAME=raspberrypi.local
+      - INFLUXDB_V2_URL=https://raspberrypi.local
+      - INFLUXDB_V2_TOKEN=TOKEN HERE
+      - INFLUXDB_V2_ORG=My Orgization
+      - INFLUXDB_V2_BUCKET=BucketName
+
       # Optional:
       # - PASSWORD=foobar123
       # - WG_PORT=51820
