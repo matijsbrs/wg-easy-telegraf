@@ -228,6 +228,13 @@
                       · {{new Date(client.latestHandshakeAt) | timeago}}
                     </span>
                   </div>
+                  <div class="text-gray-400 text-xs">
+                    <!-- pub key -->
+                    <span class="group">
+                      <span v-show="clientEditAddressId !== client.id" class="inline-block border-t-2 border-b-2 border-transparent">{{client.publicKey}}</span>
+                    </span>
+                  </div>
+
                 </div>
 
                 <div class="text-right">
