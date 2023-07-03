@@ -4,12 +4,12 @@ services:
     environment:
       # ⚠️ Required:
       # Change this to your host's public address
-      - WG_HOST=raspberrypi.local
+      - WG_HOST=wireguard.your-domain.nl
 
       # Required for telegraf if Activated.
       - TELEGRAF_ENABLED=true
-      - INFLUXDB_V2_HOSTNAME=raspberrypi.local
-      - INFLUXDB_V2_URL=https://raspberrypi.local
+      - INFLUXDB_V2_HOSTNAME=wireguard.local
+      - INFLUXDB_V2_URL=https://influxdb.local
       - INFLUXDB_V2_TOKEN=TOKEN HERE
       - INFLUXDB_V2_ORG=My Orgization
       - INFLUXDB_V2_BUCKET=BucketName
@@ -25,11 +25,25 @@ services:
       # - WG_POST_UP=echo "Post Up" > /etc/wireguard/post-up.txt
       # - WG_PRE_DOWN=echo "Pre Down" > /etc/wireguard/pre-down.txt
       # - WG_POST_DOWN=echo "Post Down" > /etc/wireguard/post-down.txt
-      
+
+    # Optional:
+    # When you use traefik and authelia. The following labels should work
+    # labels:
+    #   - 'traefik.enable=true'
+    #   - 'traefik.http.routers.wg-easy.rule=Host(`wireguard.your-domain.nl`)'
+    #   - 'traefik.http.routers.wg-easy.entrypoints=web-secure'
+    #   - 'traefik.http.routers.wg-easy.tls=true'
+    #   - 'traefik.http.routers.wg-easy.tls.certresolver=letsEncrypt'
+    #   - 'traefik.http.routers.wg-easy.middlewares=authelia@docker'
+    #   - 'traefik.http.services.wg-easy.loadbalancer.server.port=51821'
+    
+    expose:
+      - 51821
+
     image: weejewel/wg-easy
     container_name: wg-easy
     volumes:
-      - .:/etc/wireguard
+      - ./wireguard:/etc/wireguard
     ports:
       - "51820:51820/udp"
       - "51821:51821/tcp"
@@ -40,3 +54,8 @@ services:
     sysctls:
       - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
+    networks:
+      nw:
+        ipv4_address: 172.21.0.30
+      traefik_nw:
+        ipv4_address: 172.22.100.250
