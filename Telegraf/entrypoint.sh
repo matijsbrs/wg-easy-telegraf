@@ -2,9 +2,9 @@
 if [ "$TELEGRAF_ENABLED" == "true" ]; then
     echo "Telegraf is enabled!"
     
-    python env2conf.py telegraf.conf /etc/telegraf/telegraf.conf TELEGRAF_
+    python env2conf.py telegraf.conf /etc/telegraf.conf TELEGRAF_
 
-    service telegraf restart
+    /usr/bin/telegraf --config /etc/telegraf.conf &
 
 else
     echo "Telegraf is not enabled."
